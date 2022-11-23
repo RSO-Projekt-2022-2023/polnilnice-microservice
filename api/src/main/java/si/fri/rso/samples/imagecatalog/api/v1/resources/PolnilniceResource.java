@@ -9,8 +9,8 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
-import si.fri.rso.samples.imagecatalog.lib.ImageMetadata;
-import si.fri.rso.samples.imagecatalog.services.beans.ImageMetadataBean;
+import si.fri.rso.samples.imagecatalog.lib.Polnilnice;
+import si.fri.rso.samples.imagecatalog.services.beans.PolnilniceBean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,33 +25,33 @@ import java.util.logging.Logger;
 
 
 @ApplicationScoped
-@Path("/images")
+@Path("/polnilnice")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ImageMetadataResource {
+public class PolnilniceResource {
 
-    private Logger log = Logger.getLogger(ImageMetadataResource.class.getName());
+    private Logger log = Logger.getLogger(PolnilniceResource.class.getName());
 
     @Inject
-    private ImageMetadataBean imageMetadataBean;
+    private PolnilniceBean polnilniceBean;
 
 
     @Context
     protected UriInfo uriInfo;
 
-    @Operation(description = "Get all image metadata.", summary = "Get all metadata")
+    @Operation(description = "Get all polnilnice metadata.", summary = "Get all metadata")
     @APIResponses({
             @APIResponse(responseCode = "200",
                     description = "List of image metadata",
-                    content = @Content(schema = @Schema(implementation = ImageMetadata.class, type = SchemaType.ARRAY)),
+                    content = @Content(schema = @Schema(implementation = Polnilnice.class, type = SchemaType.ARRAY)),
                     headers = {@Header(name = "X-Total-Count", description = "Number of objects in list")}
             )})
     @GET
-    public Response getImageMetadata() {
+    public Response getPolnilnice() {
 
-        List<ImageMetadata> imageMetadata = imageMetadataBean.getImageMetadataFilter(uriInfo);
+        List<Polnilnice> polnilnice = polnilniceBean.getPolnilniceFilter(uriInfo);
 
-        return Response.status(Response.Status.OK).entity(imageMetadata).build();
+        return Response.status(Response.Status.OK).entity(polnilnice).build();
     }
 
 
@@ -60,20 +60,20 @@ public class ImageMetadataResource {
             @APIResponse(responseCode = "200",
                     description = "Image metadata",
                     content = @Content(
-                            schema = @Schema(implementation = ImageMetadata.class))
+                            schema = @Schema(implementation = Polnilnice.class))
             )})
     @GET
-    @Path("/{imageMetadataId}")
-    public Response getImageMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                     @PathParam("imageMetadataId") Integer imageMetadataId) {
+    @Path("/{polnilniceId}")
+    public Response getPolnilnice(@Parameter(description = "Polnilnice ID.", required = true)
+                                     @PathParam("polnilniceId") Integer polnilniceId) {
 
-        ImageMetadata imageMetadata = imageMetadataBean.getImageMetadata(imageMetadataId);
+        Polnilnice polnilnice = polnilniceBean.getPolnilnice(polnilniceId);
 
-        if (imageMetadata == null) {
+        if (polnilnice == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.status(Response.Status.OK).entity(imageMetadata).build();
+        return Response.status(Response.Status.OK).entity(polnilnice).build();
     }
 
     @Operation(description = "Add image metadata.", summary = "Add metadata")
@@ -84,19 +84,19 @@ public class ImageMetadataResource {
             @APIResponse(responseCode = "405", description = "Validation error .")
     })
     @POST
-    public Response createImageMetadata(@RequestBody(
+    public Response createPolnilnice(@RequestBody(
             description = "DTO object with image metadata.",
             required = true, content = @Content(
-            schema = @Schema(implementation = ImageMetadata.class))) ImageMetadata imageMetadata) {
+            schema = @Schema(implementation = Polnilnice.class))) Polnilnice polnilnice) {
 
-        if ((imageMetadata.getTitle() == null || imageMetadata.getDescription() == null || imageMetadata.getUri() == null)) {
+        if ((polnilnice.getCoord_north() == null || polnilnice.getCoord_east() == null || polnilnice.getChargers() == null)) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         else {
-            imageMetadata = imageMetadataBean.createImageMetadata(imageMetadata);
+            polnilnice = polnilniceBean.createPolnilnice(polnilnice);
         }
 
-        return Response.status(Response.Status.CONFLICT).entity(imageMetadata).build();
+        return Response.status(Response.Status.CONFLICT).entity(polnilnice).build();
 
     }
 
@@ -109,18 +109,18 @@ public class ImageMetadataResource {
             )
     })
     @PUT
-    @Path("{imageMetadataId}")
-    public Response putImageMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                     @PathParam("imageMetadataId") Integer imageMetadataId,
+    @Path("{polnilniceId}")
+    public Response putPolnilnice(@Parameter(description = "Metadata ID.", required = true)
+                                     @PathParam("polnilniceId") Integer polnilniceId,
                                      @RequestBody(
                                              description = "DTO object with image metadata.",
                                              required = true, content = @Content(
-                                             schema = @Schema(implementation = ImageMetadata.class)))
-                                             ImageMetadata imageMetadata){
+                                             schema = @Schema(implementation = Polnilnice.class)))
+                                     Polnilnice polnilnice){
 
-        imageMetadata = imageMetadataBean.putImageMetadata(imageMetadataId, imageMetadata);
+        polnilnice = polnilniceBean.putPolnilnice(polnilniceId, polnilnice);
 
-        if (imageMetadata == null) {
+        if (polnilnice == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
@@ -140,11 +140,11 @@ public class ImageMetadataResource {
             )
     })
     @DELETE
-    @Path("{imageMetadataId}")
-    public Response deleteImageMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                        @PathParam("imageMetadataId") Integer imageMetadataId){
+    @Path("{polnilniceId}")
+    public Response deletePolnilnice(@Parameter(description = "Metadata ID.", required = true)
+                                        @PathParam("polnilniceId") Integer polnilniceId){
 
-        boolean deleted = imageMetadataBean.deleteImageMetadata(imageMetadataId);
+        boolean deleted = polnilniceBean.deletePolnilnice(polnilniceId);
 
         if (deleted) {
             return Response.status(Response.Status.NO_CONTENT).build();

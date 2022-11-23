@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Converter(autoApply = true)
-public class InstantAtributeConverter implements AttributeConverter<Instant, Timestamp> {
+public class PolnilniceAtributeConverter implements AttributeConverter<Instant, Timestamp> {
 
     @Override
     public Timestamp convertToDatabaseColumn(Instant instant) {

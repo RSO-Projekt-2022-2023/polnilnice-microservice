@@ -1,4 +1,4 @@
-package si.fri.rso.samples.imagecatalog.services.beans;
+package si.fri.rso.polnilnice.services.beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 
-import si.fri.rso.samples.imagecatalog.lib.Polnilnice;
-import si.fri.rso.samples.imagecatalog.models.converters.PolnilniceConverter;
-import si.fri.rso.samples.imagecatalog.models.entities.PolnilniceEntity;
+import si.fri.rso.polnilnice.lib.Polnilnice;
+import si.fri.rso.polnilnice.models.converters.PolnilniceConverter;
+import si.fri.rso.polnilnice.models.entities.PolnilniceEntity;
 
 
 @RequestScoped

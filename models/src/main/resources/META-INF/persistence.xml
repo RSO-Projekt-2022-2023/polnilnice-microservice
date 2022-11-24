@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-    <persistence-unit name="image-catalog-jpa" transaction-type="RESOURCE_LOCAL">
-        <non-jta-data-source>jdbc/ImageMetadataDS</non-jta-data-source>
+    <persistence-unit name="polnilnice-jpa" transaction-type="RESOURCE_LOCAL">
+        <non-jta-data-source>jdbc/PolnilniceDS</non-jta-data-source>
 
-        <class>si.fri.rso.samples.imagecatalog.models.entities.PolnilniceEntity</class>
-        <class>si.fri.rso.samples.imagecatalog.models.converters.PolnilniceAtributeConverter</class>
+        <class>si.fri.rso.polnilnice.models.entities.PolnilniceEntity</class>
+        <class>si.fri.rso.polnilnice.models.converters.PolnilniceAtributeConverter</class>
 
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

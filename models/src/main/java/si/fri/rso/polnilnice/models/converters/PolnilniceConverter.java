@@ -1,7 +1,7 @@
-package si.fri.rso.samples.imagecatalog.models.converters;
+package si.fri.rso.polnilnice.models.converters;
 
-import si.fri.rso.samples.imagecatalog.lib.Polnilnice;
-import si.fri.rso.samples.imagecatalog.models.entities.PolnilniceEntity;
+import si.fri.rso.polnilnice.lib.Polnilnice;
+import si.fri.rso.polnilnice.models.entities.PolnilniceEntity;
 
 public class PolnilniceConverter {
 

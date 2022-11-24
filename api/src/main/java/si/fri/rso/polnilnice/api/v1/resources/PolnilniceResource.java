@@ -1,4 +1,4 @@
-package si.fri.rso.samples.imagecatalog.api.v1.resources;
+package si.fri.rso.polnilnice.api.v1.resources;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
@@ -9,8 +9,8 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
-import si.fri.rso.samples.imagecatalog.lib.Polnilnice;
-import si.fri.rso.samples.imagecatalog.services.beans.PolnilniceBean;
+import si.fri.rso.polnilnice.lib.Polnilnice;
+import si.fri.rso.polnilnice.services.beans.PolnilniceBean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

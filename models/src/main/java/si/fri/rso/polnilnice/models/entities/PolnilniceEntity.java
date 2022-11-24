@@ -1,15 +1,43 @@
-package si.fri.rso.samples.imagecatalog.lib;
+package si.fri.rso.polnilnice.models.entities;
 
+import javax.persistence.*;
 import java.time.Instant;
 
-public class Polnilnice {
+@Entity
+@Table(name = "polnilnice")
+@NamedQueries(value =
+        {
+                @NamedQuery(name = "PolnilniceEntity.getAll",
+                        query = "SELECT im FROM PolnilniceEntity im")
+        })
+public class PolnilniceEntity {
 
-    private Integer polnilniceId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "coord_north")
     private Float coord_north;
+
+    @Column(name = "coord_east")
     private Float coord_east;
+
+    @Column(name = "chargers")
     private Integer chargers;
+
+    @Column(name = "available")
     private Integer available;
+
+    @Column(name = "created")
     private Instant created;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Float getCoord_north() {
         return coord_north;
@@ -50,14 +78,5 @@ public class Polnilnice {
     public void setCreated(Instant created) {
         this.created = created;
     }
-
-    public Integer getPolnilniceId() {
-        return polnilniceId;
-    }
-
-    public void setPolnilniceId(Integer polnilniceId) {
-        this.polnilniceId = polnilniceId;
-    }
-
 
 }

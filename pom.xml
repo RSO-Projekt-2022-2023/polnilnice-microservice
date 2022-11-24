@@ -45,6 +45,12 @@
                 <version>${kumuluzee-rest.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.kumuluz.ee.consul</groupId>
+                <artifactId>kumuluzee-config</artifactId>
+                <version>${kumuluzee-config.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.postgresql</groupId>

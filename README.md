@@ -21,11 +21,11 @@ Available at: localhost:8080/v1/images
 
 ## Docker commands
 ```bash
-docker build -t novaslika .   
+docker build -t polnilnice .   
 docker images
-docker run novaslika    
-docker tag novaslika prporso/novaslika   
-docker push prporso/novaslika
+docker run polnilnice    
+docker tag polnilnice kkklemennn/polnilnice   
+docker push kkklemennn/polnilnice
 docker ps
 ```
 

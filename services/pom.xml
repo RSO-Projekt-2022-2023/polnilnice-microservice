@@ -35,6 +35,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.kumuluz.ee.metrics</groupId>
+            <artifactId>kumuluzee-metrics-core</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20190722</version>
@@ -43,6 +48,11 @@
         <dependency>
             <groupId>si.fri.rso</groupId>
             <artifactId>polnilnice-models</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
+            <version>2.3</version>
         </dependency>
 
     </dependencies>

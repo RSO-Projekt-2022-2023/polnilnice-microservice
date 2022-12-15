@@ -1,5 +1,11 @@
 package si.fri.rso.polnilnice.services.beans;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
+import si.fri.rso.polnilnice.lib.Polnilnice;
+import si.fri.rso.polnilnice.models.converters.PolnilniceConverter;
+import si.fri.rso.polnilnice.models.entities.PolnilniceEntity;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -9,13 +15,6 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
-import com.kumuluz.ee.rest.beans.QueryParameters;
-import com.kumuluz.ee.rest.utils.JPAUtils;
-
-import si.fri.rso.polnilnice.lib.Polnilnice;
-import si.fri.rso.polnilnice.models.converters.PolnilniceConverter;
-import si.fri.rso.polnilnice.models.entities.PolnilniceEntity;
 
 
 @RequestScoped
@@ -37,6 +36,7 @@ public class PolnilniceBean {
 
     }
 
+    @Timed
     public List<Polnilnice> getPolnilniceFilter(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)

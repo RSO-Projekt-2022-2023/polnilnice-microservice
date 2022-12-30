@@ -1,5 +1,6 @@
 package si.fri.rso.polnilnice.api.v1.resources;
 
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -20,17 +21,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
-import java.util.logging.Logger;
 
 
-
+@Log
 @ApplicationScoped
 @Path("/polnilnice")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PolnilniceResource {
-
-    private Logger log = Logger.getLogger(PolnilniceResource.class.getName());
 
     @Inject
     private PolnilniceBean polnilniceBean;

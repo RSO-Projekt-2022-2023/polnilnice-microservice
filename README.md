@@ -30,7 +30,11 @@ docker ps
 
 ## URLs
 App: localhost:8080/v1/polnilnice
+
 Health: localhost:8080/health/live
+
 Metrics:localhost:8080/health/metrics
+
 GraphQL: localhost:8080/graphiql
+
 OpenAPI: localhost:8080/api-specs/ui/

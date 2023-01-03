@@ -2,6 +2,7 @@ package si.fri.rso.polnilnice.api.v1.resources;
 
 import si.fri.rso.polnilnice.services.config.RestProperties;
 
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 @Path("/demo")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@CrossOrigin(allowOrigin = "*")
 public class DemoResource {
 
     private Logger log = Logger.getLogger(DemoResource.class.getName());

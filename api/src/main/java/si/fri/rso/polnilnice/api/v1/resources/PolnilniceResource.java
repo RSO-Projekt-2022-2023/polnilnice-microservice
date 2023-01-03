@@ -12,6 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import si.fri.rso.polnilnice.lib.Polnilnice;
 import si.fri.rso.polnilnice.services.beans.PolnilniceBean;
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -28,6 +29,7 @@ import java.util.List;
 @Path("/polnilnice")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@CrossOrigin(allowOrigin = "*")
 public class PolnilniceResource {
 
     @Inject

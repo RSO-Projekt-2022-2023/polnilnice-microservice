@@ -13,7 +13,7 @@ spec:
         app: polnilnice
     spec:
       containers:
-        - image: kkklemennn/polnilnice:2022-11-24-18-56-15
+        - image: kkklemennn/polnilnice:2022-12-30-19-58-20
           name: polnilnice
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
@@ -32,12 +32,12 @@ spec:
               port: server
             initialDelaySeconds: 20
             periodSeconds: 3
-            readinessProbe:
-              httpGet:
-                path: /health/ready
-                port: server
-              initialDelaySeconds: 20
-              periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
 
 ---
 

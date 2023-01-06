@@ -32,22 +32,11 @@ import java.util.Optional;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
-import org.eclipse.microprofile.faulttolerance.Fallback;
-import org.eclipse.microprofile.faulttolerance.Timeout;
-
 
 @RequestScoped
 public class PolnilniceBean {
 
-    private Optional<String> polnilnice_host;
-
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-
     private Logger log = Logger.getLogger(PolnilniceBean.class.getName());
-
-    @Inject
-    private PolnilniceBean polnilniceBeanProxy;
 
     @Inject
     private EntityManager em;
@@ -82,7 +71,6 @@ public class PolnilniceBean {
         }
 
         Polnilnice polnilnice = PolnilniceConverter.toDto(polnilniceEntity);
-        polnilnice.setAvailable(polnilniceBeanProxy.getAvailable(id));
 
         return polnilnice;
     }
@@ -149,47 +137,6 @@ public class PolnilniceBean {
         }
 
         return true;
-    }
-
-    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
-    @CircuitBreaker(requestVolumeThreshold = 3)
-    @Fallback(fallbackMethod = "getAvailableFallback")
-    public Integer getAvailable(Integer polnilniceId) {
-        log.info("Executing FT!!!!");
-        polnilnice_host = Optional.of("http://localhost:8080");
-        String polnilniceString = myHttpGet(polnilnice_host.get() + "/v1/polnilnice", null);
-        System.out.println(polnilniceString);
-
-        try {
-            System.out.println("Getting polnilnica available");
-            JSONArray polnilniceArray = new JSONArray(polnilniceString);
-            JSONObject polnilniceObject = polnilniceArray.getJSONObject(polnilniceId-1);
-            // System.out.println(polnilniceObject.toString());
-            Integer available = polnilniceObject.getInt("available");
-            System.out.println("Available:" + available);
-            return available;
-        } catch (WebApplicationException | ProcessingException e) {
-            System.out.println("TU2!!");
-            log.severe(e.getMessage());
-            throw new InternalServerErrorException(e);
-        }
-    }
-
-    public Integer getAvailableFallback(Integer polnilniceId) {
-        System.out.println("TU3");
-        return null;
-    }
-
-    private String myHttpGet(String url, String body) {
-        HttpGet request = new HttpGet(url);
-        CloseableHttpResponse response = null;
-
-        try {
-            response = httpClient.execute(request);
-            return EntityUtils.toString(response.getEntity());
-        } catch (IOException e) {
-            return  e.getMessage();
-        }
     }
 
     private void beginTx() {

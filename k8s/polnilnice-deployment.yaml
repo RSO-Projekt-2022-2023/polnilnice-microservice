@@ -13,7 +13,7 @@ spec:
         app: polnilnice
     spec:
       containers:
-        - image: kkklemennn/polnilnice:2022-12-30-19-58-20
+        - image: kkklemennn/polnilnice:2023-01-06-17-41-38
           name: polnilnice
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
@@ -46,7 +46,7 @@ kind: Service
 metadata:
   name: polnilnice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8080
       protocol: TCP

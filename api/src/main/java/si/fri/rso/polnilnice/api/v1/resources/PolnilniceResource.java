@@ -96,7 +96,7 @@ public class PolnilniceResource {
             polnilnice = polnilniceBean.createPolnilnice(polnilnice);
         }
 
-        return Response.status(Response.Status.CONFLICT).entity(polnilnice).build();
+        return Response.status(Response.Status.CREATED).entity(polnilnice).build();
 
     }
 
